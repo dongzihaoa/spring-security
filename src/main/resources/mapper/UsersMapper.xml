@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dzh.springsecurity02.mapper.UsersMapper">
+    <!--    根据用户id查权限   -->
+    <select id="selectUserById" parameterType="int" resultType="role">
+        select r.id,r.name
+        from role_user ru
+        inner join role r
+        on ru.rid = r.id
+        where ru.uid = #{id}
+    </select>
+
+    <select id="selectMenuById" parameterType="int" resultType="menu">
+        select m.id,m.name,m.url,m.parentid,m.permission
+        from role_user ru
+        join role r
+          on ru.rid=r.id
+        join role_menu rm
+          on rm.rid=r.id
+        join menu m
+          on rm.mid=m.id
+        where ru.uid=#{id}
+    </select>
+</mapper>

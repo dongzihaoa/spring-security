@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://114.115.242.78:3306/security?useSSL=false&serverTimeZone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  thymeleaf:
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+  redis:
+    host: 192.168.52.100
+    port: 7001
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+  application:
+    name: spring-security
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.dzh.springsecurity02.entity
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.dzh.springsecurity02.mapper: debug
+token:
+  expire:
+    seconds: 7200
+  jwtSecret: java2208#$xi.ke
